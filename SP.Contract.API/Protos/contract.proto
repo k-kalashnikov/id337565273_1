@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option csharp_namespace = "SP.Contract.API";
+
+import "google/protobuf/empty.proto";
+
+package Contract.api;
+
+service ContractGrpcService {
+    rpc GetAllContracts(google.protobuf.Empty) returns(Contracts);
+}
+message Contracts {
+    repeated Contract Items = 1;
+}
+message Contract {
+	string Id = 1;
+
+    string Parent = 2;
+
+    string Number = 3;
+
+    string StartDate = 4;
+
+    string FinishDate = 5;
+
+    int64 CustomerOrganizationId = 6;
+
+    int64 ContractorOrganizationId = 7;
+
+    Account Account = 8;
+
+}
+
+message Account {
+    int64 Id = 1;
+    string FirstName = 2;
+    string LastName = 3;
+    string MiddleName = 4;
+    int64 OrganizationId = 5;
+    string FullName = 6;
+}

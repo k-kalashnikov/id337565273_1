@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<Version>1.0.2</Version>
+		<PackageVersion>1.0.2</PackageVersion>
+		<AssemblyVersion>1.0.0.2</AssemblyVersion>
+		<LangVersion>7.1</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Google.Protobuf" Version="3.12.3" />
+		<PackageReference Include="Grpc.AspNetCore" Version="2.29.0" />
+		<PackageReference Include="Grpc.Net.ClientFactory" Version="2.29.0" />
+		<PackageReference Include="Grpc.Tools" Version="2.29.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="MediatR" Version="8.0.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProtoBuf Include="..\SP.Contract.API\Protos\contract.proto">
+			<Link>Protos\contract.proto</Link>
+		</ProtoBuf>
+	</ItemGroup>
+
+</Project>

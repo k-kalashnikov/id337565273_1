@@ -1,0 +1,30 @@
+image: mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
+
+stages:
+    - build
+    - test
+
+variables:      
+    DOCKER_HOST: tcp://docker:2375   
+    GIT_SUBMODULE_STRATEGY: normal
+    CI_APPLICATION_TEST: "SP.Contract.Application.Test"
+
+build:
+    stage: build
+    script:
+        - dotnet restore -r linux-musl-x64 -s https://api.nuget.org/v3/index.json -s https://api-nuget.stecpoint.ru/nuget/
+        - dotnet publish -c Release -r linux-musl-x64 -o ./publish --no-restore
+    artifacts:
+        expire_in: 10 minutes
+        paths:
+            - publish/
+    only:
+        - master
+
+test:
+    stage: test
+    script:
+        - cd publish
+        - dotnet test SP.Contract.Application.Test.dll
+    only:
+        - master
